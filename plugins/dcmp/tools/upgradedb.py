@@ -12,7 +12,8 @@ MYSQL_CONN_ID = "dag_creation_manager_plugin_sql_alchemy_conn"
 
 def get_mysql_hook():
     os.environ[CONN_ENV_PREFIX + MYSQL_CONN_ID.upper()] = settings.SQL_ALCHEMY_CONN
-    return MySqlHook(mysql_conn_id=MYSQL_CONN_ID)
+    #MySqlHook.ssl_mode = settings.SSL_MODE #"REQUIRED"
+    return MySqlHook(mysql_conn_id=MYSQL_CONN_ID, ssl_mode=settings.SSL_MODE)
 
 
 def run_sql(sql, ignore_error=False):
